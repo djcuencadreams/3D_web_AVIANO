@@ -133,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initialize panzoom
-  const floorImage = document.getElementById('floor-image');
   const panzoom = Panzoom(floorImage, {
     maxScale: 4,
     minScale: 0.5,
