@@ -227,8 +227,17 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  padding: 0 120px 0 40px;
+  gap: 20px;
+  padding: 20px;
+  flex-direction: column-reverse;
+}
+
+@media (min-width: 1024px) {
+  .floor-viewer.active {
+    flex-direction: row;
+    gap: 40px;
+    padding: 0 120px 0 40px;
+  }
 }
 
 .close-floor-viewer {
@@ -256,8 +265,8 @@ body, html {
   background-color: white;
   border-radius: 15px;
   padding: 20px;
-  width: calc(100% - 200px);
-  height: 80vh;
+  width: 100%;
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;

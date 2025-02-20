@@ -171,13 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const panzoom = Panzoom(floorImage, {
     maxScale: 4,
     minScale: 1,
-    contain: 'outside',
+    contain: 'inside',
     touchAction: 'none',
     startScale: 1,
     startX: 0,
     startY: 0,
-    step: 0.5,
-    animate: true
+    step: 0.3,
+    animate: true,
+    panOnlyWhenZoomed: true,
+    disablePan: false
   });
 
   // Enable mouse wheel zoom with smoother steps
