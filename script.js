@@ -99,9 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
     mainContent.style.display = 'flex';
   });
 
+  // Preload images
+  function preloadFloorImages() {
+    const floors = ['1', '2', '3', '4', '5'];
+    floors.forEach(floor => {
+      const img = new Image();
+      img.src = `0${floor}. ${getFloorName(floor)}.png`;
+    });
+  }
+
   verPlantasBtn.addEventListener('click', () => {
     floorViewer.classList.add('active');
     mainContent.style.display = 'none';
+    preloadFloorImages();
   });
 
   backToIntro.addEventListener('click', () => {
