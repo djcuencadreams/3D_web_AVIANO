@@ -132,6 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function resetImagePosition() {
+    panzoom.reset({ animate: false });
+    panzoom.setOptions({ startScale: 1, startX: 0, startY: 0 });
+  }
+
   floorBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const floor = btn.dataset.floor;
@@ -139,12 +144,15 @@ document.addEventListener('DOMContentLoaded', () => {
       floorBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       
+      // Reset position before changing image
+      resetImagePosition();
+      
       // Change image source
       floorImage.src = preloadedImages[floor].src;
       
-      // Reset position and zoom after image loads
+      // Ensure proper centering after load
       floorImage.onload = () => {
-        panzoom.reset();
+        resetImagePosition();
         floorImage.onload = null;
       };
     });
@@ -208,12 +216,4 @@ document.addEventListener('DOMContentLoaded', () => {
     lastTap = currentTime;
   });
 
-  // Reset zoom when changing floors
-  floorBtns.forEach(btn => {
-    const originalClick = btn.onclick;
-    btn.onclick = (e) => {
-      if (originalClick) originalClick.call(btn, e);
-      setTimeout(() => panzoom.reset(), 100);
-    };
   });
-});
