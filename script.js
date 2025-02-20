@@ -171,30 +171,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const panzoom = Panzoom(floorImage, {
     maxScale: 4,
     minScale: 1,
-    contain: 'outer',
+    contain: 'inside',
+    touchAction: 'none',
     startScale: 1,
     startX: 0,
     startY: 0,
     step: 0.3,
-    animate: true
+    animate: true,
+    panOnlyWhenZoomed: true,
+    disablePan: false
   });
 
-  // Enable mouse wheel zoom
-  const parent = floorImage.parentElement;
-  parent.addEventListener('wheel', panzoom.zoomWithWheel);
-
-  // Enable touch events
-  parent.addEventListener('gesturestart', function(e) {
-    e.preventDefault();
-  });
-  
-  parent.addEventListener('gesturechange', function(e) {
-    e.preventDefault();
+  // Enable mouse wheel zoom with smoother steps
+  floorImage.parentElement.addEventListener('wheel', (event) => {
+    const scale = panzoom.getScale();
+    if ((scale === 1 && event.deltaY > 0) || (scale > 1)) {
+      panzoom.zoomWithWheel(event, {
+        step: 0.3
+      });
+    }
   });
 
-  parent.addEventListener('gestureend', function(e) {
-    e.preventDefault();
-  });
+  // Enable pinch zoom on mobile
+  floorImage.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   // Ensure image is centered after load
   floorImage.addEventListener('load', () => {
