@@ -228,7 +228,7 @@ body, html {
   align-items: center;
   justify-content: center;
   gap: 40px;
-  padding: 40px 120px 40px 40px;
+  padding: 0 120px 0 40px;
 }
 
 .close-floor-viewer {
@@ -257,7 +257,7 @@ body, html {
   border-radius: 15px;
   padding: 20px;
   width: calc(100% - 200px);
-  max-height: 85vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
