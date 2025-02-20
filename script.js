@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Create image objects for preloading
   const preloadedImages = {};
+  let currentFloor = '5'; // Starting with 5th floor
   
   function preloadFloorImages() {
     const floors = ['1', '2', '3', '4', '5'];
@@ -140,21 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
   floorBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const floor = btn.dataset.floor;
-      // Update active state
-      floorBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      // Reset position before changing image
-      resetImagePosition();
-      
-      // Change image source
-      floorImage.src = preloadedImages[floor].src;
-      
-      // Ensure proper centering after load
-      floorImage.onload = () => {
+      if (floor !== currentFloor) {
+        // Update active state
+        floorBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Reset position only when changing floors
         resetImagePosition();
-        floorImage.onload = null;
-      };
+        
+        // Change image source
+        floorImage.src = preloadedImages[floor].src;
+        currentFloor = floor;
+      }
     });
   });
 
