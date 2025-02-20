@@ -147,22 +147,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize panzoom
   const panzoom = Panzoom(floorImage, {
-    maxScale: 5,
-    minScale: 0.5,
-    contain: 'inside',
+    maxScale: 4,
+    minScale: 1,
+    contain: 'outside',
     touchAction: 'none',
     startScale: 1,
     startX: 0,
     startY: 0,
-    step: 0.3,
+    step: 0.5,
     animate: true
   });
 
   // Enable mouse wheel zoom with smoother steps
   floorImage.parentElement.addEventListener('wheel', (event) => {
-    panzoom.zoomWithWheel(event, {
-      step: 0.2
-    });
+    const scale = panzoom.getScale();
+    if ((scale === 1 && event.deltaY > 0) || (scale > 1)) {
+      panzoom.zoomWithWheel(event, {
+        step: 0.3
+      });
+    }
   });
 
   // Enable pinch zoom on mobile
