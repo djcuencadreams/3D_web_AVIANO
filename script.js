@@ -120,14 +120,26 @@ document.addEventListener('DOMContentLoaded', () => {
     intro.style.display = 'flex';
   });
 
-  // Create image objects for preloading
-  const preloadedImages = {};
+  // Initialize floor viewer
   let currentFloor = '5'; // Starting with 5th floor
-  
+  const preloadedImages = {};
+
+  function preloadFloorImages() {
+    const floors = ['1', '2', '3', '4', '5'];
+    floors.forEach(floor => {
+      const img = new Image();
+      img.src = `0${floor}. ${getFloorName(floor)}.png`;
+      preloadedImages[floor] = img;
+    });
+  }
+
   function resetImagePosition() {
     panzoom.reset({ animate: false });
     panzoom.setOptions({ startScale: 1, startX: 0, startY: 0 });
   }
+
+  // Preload images when floor viewer is initialized
+  preloadFloorImages();
 
   floorBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -141,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetImagePosition();
         
         // Change image source
-        floorImage.src = preloadedImages[floor].src;
+        floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
         currentFloor = floor;
       }
     });
