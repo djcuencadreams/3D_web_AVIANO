@@ -1,0 +1,139 @@
+/* General */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Pantalla de introducción */
+.intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.intro-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.intro-logo {
+  max-width: 50%;
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0px 4px 6px rgba(255, 255, 255, 0.7));
+}
+
+.intro-button {
+  padding: 15px 40px;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.intro-button:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Carrusel interactivo */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.media {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media.active {
+  opacity: 1;
+}
+
+/* Botones de navegación */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.nav-button:hover {
+  background-color: #34495e;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-prev {
+  left: 20px;
+}
+
+.nav-next {
+  right: 20px;
+}
+
+.nav-button svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+
+/* Botón de regreso */
+.back-button {
+  top: 20px;
+  left: 20px;
+  position: absolute;
+}

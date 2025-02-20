@@ -1,16 +1,58 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducción y Carrusel</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  Hello world
+  <!-- Pantalla de Introducción -->
+  <div class="intro" id="intro">
+    <video src="video1.mp4" autoplay muted loop class="intro-video"></video>
+    <div class="intro-content">
+      <img src="logo-aviano.png" alt="Logo Aviano" class="intro-logo">
+      <button id="enter" class="intro-button" disabled>Entrar</button>
+    </div>
+  </div>
+
+  <!-- Contenedor principal del carrusel -->
+  <div class="container" id="main-content">
+    <!-- Botón para regresar a la introducción -->
+    <button id="back-to-intro" class="nav-button back-button">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
+      </svg>
+    </button>
+
+    <!-- Botón Anterior -->
+    <button id="prev" class="nav-button nav-prev">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
+      </svg>
+    </button>
+
+    <!-- Medios (videos del carrusel) -->
+    <div class="media" id="media1">
+      <video src="transicion1.mp4" muted preload="auto"></video>
+    </div>
+    <div class="media" id="media2">
+      <video src="transicion2.mp4" muted preload="auto"></video>
+    </div>
+    <div class="media" id="media3">
+      <video src="transicion3.mp4" muted preload="auto"></video>
+    </div>
+    <div class="media" id="media4">
+      <video src="transicion4.mp4" muted preload="auto"></video>
+    </div>
+
+    <!-- Botón Siguiente -->
+    <button id="next" class="nav-button nav-next">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+      </svg>
+    </button>
+  </div>
   <script src="script.js"></script>
 </body>
-
 </html>
