@@ -131,4 +131,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     return names[floor];
   }
+
+  // Initialize panzoom
+  const floorImage = document.getElementById('floor-image');
+  const panzoom = Panzoom(floorImage, {
+    maxScale: 4,
+    minScale: 0.5,
+    contain: 'outside',
+    touchAction: 'none'
+  });
+
+  // Enable mouse wheel zoom
+  floorImage.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+
+  // Double tap to zoom on mobile
+  let lastTap = 0;
+  floorImage.addEventListener('touchend', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    if (tapLength < 300 && tapLength > 0) {
+      panzoom.zoomIn();
+      e.preventDefault();
+    }
+    lastTap = currentTime;
+  });
+
+  // Reset zoom when changing floors
+  floorBtns.forEach(btn => {
+    const originalClick = btn.onclick;
+    btn.onclick = (e) => {
+      if (originalClick) originalClick.call(btn, e);
+      setTimeout(() => panzoom.reset(), 100);
+    };
+  });
 });

@@ -252,7 +252,9 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 100px 40px 40px;
+  padding: 40px;
+  overflow: hidden;
+  touch-action: none;
 }
 
 #floor-image {
