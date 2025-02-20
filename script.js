@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Orientación del dispositivo
+  const orientationPopup = document.getElementById('orientation-popup');
+  const understandBtn = document.getElementById('understand-btn');
+  
+  function checkOrientation() {
+    if (window.innerWidth < window.innerHeight && window.innerWidth <= 768) {
+      orientationPopup.style.display = 'flex';
+    }
+  }
+
+  understandBtn.addEventListener('click', () => {
+    orientationPopup.style.display = 'none';
+  });
+
+  // Verificar orientación al cargar y al rotar
+  checkOrientation();
+  window.addEventListener('resize', checkOrientation);
   const intro = document.getElementById('intro'); // Introducción
   const mainContent = document.getElementById('main-content'); // Carrusel
   const enterButton = document.getElementById('enter'); // Botón "Entrar"
