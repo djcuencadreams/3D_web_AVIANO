@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   verPlantasBtn.addEventListener('click', () => {
+    preloadFloorImages(); // Preload first
     floorViewer.classList.add('active');
     mainContent.style.display = 'none';
-    preloadFloorImages();
   });
 
   backToIntro.addEventListener('click', () => {
@@ -120,17 +120,33 @@ document.addEventListener('DOMContentLoaded', () => {
     intro.style.display = 'flex';
   });
 
+  // Create image objects for preloading
+  const preloadedImages = {};
+  
+  function preloadFloorImages() {
+    const floors = ['1', '2', '3', '4', '5'];
+    floors.forEach(floor => {
+      const img = new Image();
+      img.src = `0${floor}. ${getFloorName(floor)}.png`;
+      preloadedImages[floor] = img;
+    });
+  }
+
   floorBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const floor = btn.dataset.floor;
-      floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
-      
       // Update active state
       floorBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       
-      // Reset position and zoom
-      panzoom.reset();
+      // Change image source
+      floorImage.src = preloadedImages[floor].src;
+      
+      // Reset position and zoom after image loads
+      floorImage.onload = () => {
+        panzoom.reset();
+        floorImage.onload = null;
+      };
     });
   });
 
