@@ -118,6 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update active state
       floorBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      
+      // Reset position and zoom
+      panzoom.reset();
+      floorImage.style.transform = 'translateX(-50%)';
     });
   });
 
