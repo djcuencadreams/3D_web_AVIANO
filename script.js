@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Reset position and zoom
       panzoom.reset();
-      floorImage.style.transform = 'translateX(-50%)';
     });
   });
 
