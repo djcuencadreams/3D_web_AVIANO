@@ -86,4 +86,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inicializa mostrando el primer medio
   showMedia(current);
+
+  // Floor Plans Viewer
+  const verPlantasBtn = document.getElementById('ver-plantas');
+  const floorViewer = document.getElementById('floor-viewer');
+  const floorImage = document.getElementById('floor-image');
+  const floorBtns = document.querySelectorAll('.floor-btn');
+
+  verPlantasBtn.addEventListener('click', () => {
+    floorViewer.classList.add('active');
+    mainContent.style.display = 'none';
+  });
+
+  backToIntro.addEventListener('click', () => {
+    mainContent.style.display = 'none';
+    floorViewer.classList.remove('active');
+    intro.style.display = 'flex';
+  });
+
+  floorBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const floor = btn.dataset.floor;
+      floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
+      
+      // Update active state
+      floorBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  function getFloorName(floor) {
+    const names = {
+      '5': 'Quinto Piso',
+      '4': 'Cuarto Piso',
+      '3': 'Tercer Piso',
+      '2': 'Segundo Piso',
+      '1': 'Primer Piso'
+    };
+    return names[floor];
+  }
 });

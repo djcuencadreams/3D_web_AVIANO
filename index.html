@@ -60,6 +60,26 @@
         <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
       </svg>
     </button>
+
+    <!-- Botón Ver Plantas -->
+    <button id="ver-plantas" class="ver-plantas-btn">
+      <i class="fas fa-building"></i>
+      Ver Plantas
+    </button>
+  </div>
+
+  <!-- Visualizador de Plantas -->
+  <div id="floor-viewer" class="floor-viewer">
+    <div class="floor-image-container">
+      <img id="floor-image" src="05. Quinto Piso.png" alt="Plano del piso">
+    </div>
+    <div class="floor-nav">
+      <button class="floor-btn active" data-floor="5">5to Piso</button>
+      <button class="floor-btn" data-floor="4">4to Piso</button>
+      <button class="floor-btn" data-floor="3">3er Piso</button>
+      <button class="floor-btn" data-floor="2">2do Piso</button>
+      <button class="floor-btn" data-floor="1">1er Piso</button>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
