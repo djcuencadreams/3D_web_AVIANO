@@ -139,12 +139,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const panzoom = Panzoom(floorImage, {
     maxScale: 4,
     minScale: 0.5,
-    contain: 'outside',
-    touchAction: 'none'
+    contain: 'inside',
+    touchAction: 'none',
+    startScale: 1,
+    startX: 0,
+    startY: 0
   });
 
   // Enable mouse wheel zoom
   floorImage.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+
+  // Ensure image is centered after load
+  floorImage.addEventListener('load', () => {
+    panzoom.reset();
+  });
 
   // Double tap to zoom on mobile
   let lastTap = 0;
