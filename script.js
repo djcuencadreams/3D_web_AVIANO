@@ -124,15 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const preloadedImages = {};
   let currentFloor = '5'; // Starting with 5th floor
   
-  function preloadFloorImages() {
-    const floors = ['1', '2', '3', '4', '5'];
-    floors.forEach(floor => {
-      const img = new Image();
-      img.src = `0${floor}. ${getFloorName(floor)}.png`;
-      preloadedImages[floor] = img;
-    });
-  }
-
   function resetImagePosition() {
     panzoom.reset({ animate: false });
     panzoom.setOptions({ startScale: 1, startX: 0, startY: 0 });
