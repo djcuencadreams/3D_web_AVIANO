@@ -92,6 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const floorViewer = document.getElementById('floor-viewer');
   const floorImage = document.getElementById('floor-image');
   const floorBtns = document.querySelectorAll('.floor-btn');
+  const closeFloorViewer = document.getElementById('close-floor-viewer');
+
+  closeFloorViewer.addEventListener('click', () => {
+    floorViewer.classList.remove('active');
+    mainContent.style.display = 'flex';
+  });
 
   verPlantasBtn.addEventListener('click', () => {
     floorViewer.classList.add('active');
