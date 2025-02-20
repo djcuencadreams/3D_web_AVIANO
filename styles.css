@@ -225,18 +225,11 @@ body, html {
 
 .floor-viewer.active {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
-  padding: 40px;
-  flex-direction: row;
-}
-
-@media (max-width: 1024px) {
-  .floor-viewer.active {
-    flex-direction: column;
-    padding: 20px;
-  }
+  padding: 20px;
 }
 
 .close-floor-viewer {
@@ -290,34 +283,25 @@ body, html {
 }
 
 .floor-nav {
-  position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   background-color: white;
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  height: fit-content;
-  align-self: center;
+  width: fit-content;
 }
 
 @media (max-width: 768px) {
-  .floor-viewer.active {
-    padding: 20px;
-    flex-direction: column;
+  .floor-nav {
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .floor-image-container {
     width: 100%;
-    max-height: 70vh;
-  }
-  
-  .floor-nav {
-    margin-top: 20px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    height: 75vh;
   }
 }
 
