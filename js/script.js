@@ -30,18 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function preloadVideos() {
     return Promise.all(
       Array.from(videos).map((video) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
+          if (video.readyState >= 3) {
+            resolve();
+            return;
+          }
           video.oncanplaythrough = () => resolve();
-          video.onerror = (e) => {
-            console.error('Error loading video:', video.querySelector('source').src, e);
-            reject(e);
-          };
+          video.onerror = () => resolve(); // Don't reject, just resolve to continue
           video.load();
         });
       })
-    ).catch(error => {
-      console.error('Error in video preloading:', error);
-      enterButton.disabled = false; // Enable button even if videos fail
+    ).finally(() => {
+      enterButton.disabled = false; // Enable button after all attempts
     });
   }
 
