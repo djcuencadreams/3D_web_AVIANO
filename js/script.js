@@ -30,12 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
   function preloadVideos() {
     return Promise.all(
       Array.from(videos).map((video) => {
-        return new Promise((resolve) => {
-          video.oncanplaythrough = () => resolve(); // Resuelve cuando el video está listo
-          video.load(); // Fuerza la carga del video
+        return new Promise((resolve, reject) => {
+          video.oncanplaythrough = () => resolve();
+          video.onerror = (e) => {
+            console.error('Error loading video:', video.querySelector('source').src, e);
+            reject(e);
+          };
+          video.load();
         });
       })
-    );
+    ).catch(error => {
+      console.error('Error in video preloading:', error);
+      enterButton.disabled = false; // Enable button even if videos fail
+    });
   }
 
   // Bloquea la interacción hasta que todos los videos estén cargados
