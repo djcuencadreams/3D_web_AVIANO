@@ -109,9 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   verPlantasBtn.addEventListener('click', () => {
-    preloadFloorImages(); // Preload first
+    preloadFloorImages();
     floorViewer.classList.add('active');
     mainContent.style.display = 'none';
+    // Load initial floor
+    loadFloorImage('5');
   });
 
   backToIntro.addEventListener('click', () => {
@@ -122,10 +124,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize floor viewer
   let currentFloor = '5'; // Starting with 5th floor
-  
+  const preloadedImages = {};
+
+  function preloadFloorImages() {
+    ['1', '2', '3', '4', '5'].forEach(floor => {
+      const img = new Image();
+      img.src = `0${floor}. ${getFloorName(floor)}.png`;
+      preloadedImages[floor] = img;
+    });
+  }
+
   function loadFloorImage(floor) {
-    const imagePath = `${floor.toString().padStart(2, '0')}. ${getFloorName(floor)}.png`;
-    floorImage.src = imagePath;
+    if (preloadedImages[floor]) {
+      floorImage.src = preloadedImages[floor].src;
+    } else {
+      floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
+    }
     floorImage.alt = `Plano del ${getFloorName(floor)}`;
   }
 
