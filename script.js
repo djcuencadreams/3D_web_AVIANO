@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetImagePosition();
         
         // Change image source
-        floorImage.src = `${floor.padStart(2, '0')}. ${getFloorName(floor)}.png`;
+        floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
         currentFloor = floor;
       }
     });
