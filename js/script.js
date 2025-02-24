@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const floors = ['1', '2', '3', '4', '5'];
     floors.forEach(floor => {
       const img = new Image();
-      img.src = `/assets/images/0${floor}. ${getFloorName(floor)}.png`;
+      img.src = `assets/images/0${floor}. ${getFloorName(floor)}.png`;
     });
   }
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const floors = ['1', '2', '3', '4', '5'];
     floors.forEach(floor => {
       const img = new Image();
-      img.src = `/assets/images/0${floor}. ${getFloorName(floor)}.png`;
+      img.src = `assets/images/0${floor}. ${getFloorName(floor)}.png`;
       preloadedImages[floor] = img;
     });
   }
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetImagePosition();
 
         // Change image source
-        floorImage.src = `/assets/images/0${floor}. ${getFloorName(floor)}.png`;
+        floorImage.src = `assets/images/0${floor}. ${getFloorName(floor)}.png`;
         currentFloor = floor;
       }
     });
