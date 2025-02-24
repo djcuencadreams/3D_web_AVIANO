@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Orientación del dispositivo
   const orientationPopup = document.getElementById('orientation-popup');
   const understandBtn = document.getElementById('understand-btn');
-  
+
   function checkOrientation() {
     if (window.innerWidth < window.innerHeight && window.innerWidth <= 768) {
       orientationPopup.style.display = 'flex';
@@ -99,17 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     mainContent.style.display = 'flex';
   });
 
-  // Preload images
-  function preloadFloorImages() {
-    const floors = ['1', '2', '3', '4', '5'];
-    floors.forEach(floor => {
-      const img = new Image();
-      img.src = `0${floor}. ${getFloorName(floor)}.png`;
-    });
-  }
 
   verPlantasBtn.addEventListener('click', () => {
-    preloadFloorImages(); // Preload first
     floorViewer.classList.add('active');
     mainContent.style.display = 'none';
   });
@@ -128,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const floors = ['1', '2', '3', '4', '5'];
     floors.forEach(floor => {
       const img = new Image();
-      img.src = `0${floor}. ${getFloorName(floor)}.png`;
+      img.src = `assets/images/0${floor}. ${getFloorName(floor)}.png`;
       preloadedImages[floor] = img;
     });
   }
@@ -148,12 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update active state
         floorBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        
+
         // Reset position only when changing floors
         resetImagePosition();
-        
+
         // Change image source
-        floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
+        floorImage.src = `assets/images/0${floor}. ${getFloorName(floor)}.png`;
         currentFloor = floor;
       }
     });
@@ -190,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   parent.addEventListener('gesturestart', function(e) {
     e.preventDefault();
   });
-  
+
   parent.addEventListener('gesturechange', function(e) {
     e.preventDefault();
   });
@@ -216,4 +207,4 @@ document.addEventListener('DOMContentLoaded', () => {
     lastTap = currentTime;
   });
 
-  });
+});
