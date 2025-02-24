@@ -122,15 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize floor viewer
   let currentFloor = '5'; // Starting with 5th floor
-  const preloadedImages = {};
-
-  function preloadFloorImages() {
-    const floors = ['1', '2', '3', '4', '5'];
-    floors.forEach(floor => {
-      const img = new Image();
-      img.src = `0${floor}. ${getFloorName(floor)}.png`;
-      preloadedImages[floor] = img;
-    });
+  
+  function loadFloorImage(floor) {
+    const imagePath = `${floor.toString().padStart(2, '0')}. ${getFloorName(floor)}.png`;
+    floorImage.src = imagePath;
+    floorImage.alt = `Plano del ${getFloorName(floor)}`;
   }
 
   function resetImagePosition() {
@@ -152,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset position only when changing floors
         resetImagePosition();
         
-        // Change image source
-        floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
+        // Load the new floor image
+        loadFloorImage(floor);
         currentFloor = floor;
       }
     });
