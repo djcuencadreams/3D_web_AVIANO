@@ -109,11 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   verPlantasBtn.addEventListener('click', () => {
-    preloadFloorImages();
+    preloadFloorImages(); // Preload first
     floorViewer.classList.add('active');
     mainContent.style.display = 'none';
-    // Load initial floor
-    loadFloorImage('5');
   });
 
   backToIntro.addEventListener('click', () => {
@@ -127,20 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const preloadedImages = {};
 
   function preloadFloorImages() {
-    ['1', '2', '3', '4', '5'].forEach(floor => {
+    const floors = ['1', '2', '3', '4', '5'];
+    floors.forEach(floor => {
       const img = new Image();
       img.src = `0${floor}. ${getFloorName(floor)}.png`;
       preloadedImages[floor] = img;
     });
-  }
-
-  function loadFloorImage(floor) {
-    if (preloadedImages[floor]) {
-      floorImage.src = preloadedImages[floor].src;
-    } else {
-      floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
-    }
-    floorImage.alt = `Plano del ${getFloorName(floor)}`;
   }
 
   function resetImagePosition() {
@@ -162,8 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset position only when changing floors
         resetImagePosition();
         
-        // Load the new floor image
-        loadFloorImage(floor);
+        // Change image source
+        floorImage.src = `0${floor}. ${getFloorName(floor)}.png`;
         currentFloor = floor;
       }
     });
